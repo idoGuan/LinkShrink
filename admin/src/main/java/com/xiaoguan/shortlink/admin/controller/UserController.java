@@ -1,6 +1,7 @@
 package com.xiaoguan.shortlink.admin.controller;
 
 import com.xiaoguan.shortlink.admin.common.convention.result.Result;
+import com.xiaoguan.shortlink.admin.common.convention.result.Results;
 import com.xiaoguan.shortlink.admin.dto.resp.UserRespDTO;
 import com.xiaoguan.shortlink.admin.service.UserService;
 import jakarta.annotation.Resource;
@@ -25,7 +26,7 @@ public class UserController {
     @GetMapping("/api/shortlink/v1/user/{username}")
     public Result<UserRespDTO> getUserByUsername(@PathVariable("username") String username){
 
-        return new Result<UserRespDTO>().setCode("0").setData(userService.getUserByUsername(username));
+        return Results.success(userService.getUserByUsername(username));
 
     }
 }
