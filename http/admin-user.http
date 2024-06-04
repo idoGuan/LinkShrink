@@ -1,10 +1,21 @@
-GET http://localhost:8002/api/shortlink/v1/user/username
+GET http://localhost:8002/api/short-link/v1/user/username
 Accept: application/json
 
 ###
 
-GET http://localhost:8002/api/shortlink/v1/user/has-username?username=xiaoguan
+GET http://localhost:8002/api/short-link/v1/user/has-username?username=xiaoguan
 Accept: application/json
 
 ###
+
+POST http://localhost:8002/api/short-link/v1/user
+Content-Type: application/json
+
+{
+  "username": "xiaoguan",
+  "password": "abc123",
+  "realname": "小管",
+  "phone": "12312341234",
+  "mail": "123@mail.com"
+}
 
