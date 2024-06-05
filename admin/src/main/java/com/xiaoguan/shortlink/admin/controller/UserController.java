@@ -2,8 +2,10 @@ package com.xiaoguan.shortlink.admin.controller;
 
 import com.xiaoguan.shortlink.admin.common.convention.result.Result;
 import com.xiaoguan.shortlink.admin.common.convention.result.Results;
+import com.xiaoguan.shortlink.admin.dto.req.UserLoginReqDTO;
 import com.xiaoguan.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.xiaoguan.shortlink.admin.dto.req.UserUpdateReqDTO;
+import com.xiaoguan.shortlink.admin.dto.resp.UserLoginRespDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.UserRespDTO;
 import com.xiaoguan.shortlink.admin.service.UserService;
 import jakarta.annotation.Resource;
@@ -45,9 +47,23 @@ public class UserController {
         return Results.success();
     }
 
+    /**
+     * 修改用户信息
+     */
     @PutMapping("/api/short-link/v1/user")
     public Result<Void> update(@RequestBody UserUpdateReqDTO UserUpdateReqDTO){
         userService.update(UserUpdateReqDTO);
         return Results.success();
+    }
+
+    @PostMapping("/api/short-link/v1/user/login")
+    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO userLoginReqDTO){
+        UserLoginRespDTO userLoginRespDTO = userService.login(userLoginReqDTO);
+        return Results.success(userLoginRespDTO);
+    }
+
+    @GetMapping("/api/short-link/v1/user/check-login")
+    public Result<Boolean> login(@RequestParam("username") String username, @RequestParam("token") String token){
+        return Results.success(userService.checkLogin(username, token));
     }
 }

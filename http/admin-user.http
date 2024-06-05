@@ -32,3 +32,13 @@ Content-Type: application/json
   "mail": "123@mail.com"
 }
 
+###
+
+POST http://localhost:8002/api/short-link/v1/user/login
+Content-Type: application/json
+
+{
+  "username": "xiaoguan",
+  "password": "abc123456"
+}
+
