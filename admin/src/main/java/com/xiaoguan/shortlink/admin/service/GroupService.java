@@ -28,4 +28,6 @@ public interface GroupService extends IService<GroupDO> {
     List<ShortLinkGroupRespDTO> listGroup();
 
     void updateGroup(ShortLinkGroupUpdateReqDTO shortLinkGroupUpdateReqDTO);
+
+    void deleteGroup(String gid);
 }
