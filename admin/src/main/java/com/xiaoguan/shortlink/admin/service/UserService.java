@@ -3,6 +3,7 @@ package com.xiaoguan.shortlink.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoguan.shortlink.admin.dao.entity.UserDO;
 import com.xiaoguan.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.xiaoguan.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
@@ -21,4 +22,6 @@ public interface UserService extends IService<UserDO> {
     Boolean hasUsername(String username);
 
     void register(UserRegisterReqDTO userRegisterReqDTO);
+
+    void update(UserUpdateReqDTO userUpdateReqDTO);
 }

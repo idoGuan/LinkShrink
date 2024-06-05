@@ -19,3 +19,16 @@ Content-Type: application/json
   "mail": "123@mail.com"
 }
 
+###
+
+PUT http://localhost:8002/api/short-link/v1/user
+Content-Type: application/json
+
+{
+  "username": "xiaoguan1",
+  "password": "abc123456",
+  "realname": "小管",
+  "phone": "12312341234",
+  "mail": "123@mail.com"
+}
+

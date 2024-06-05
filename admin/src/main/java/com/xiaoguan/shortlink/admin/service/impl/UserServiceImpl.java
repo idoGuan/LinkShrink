@@ -8,6 +8,7 @@ import com.xiaoguan.shortlink.admin.common.convention.exception.ClientException;
 import com.xiaoguan.shortlink.admin.dao.entity.UserDO;
 import com.xiaoguan.shortlink.admin.dao.mapper.UserMapper;
 import com.xiaoguan.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.xiaoguan.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.UserRespDTO;
 import com.xiaoguan.shortlink.admin.service.UserService;
 import jakarta.annotation.Resource;
@@ -74,5 +75,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         }finally {
             lock.unlock();
         }
+    }
+
+    @Override
+    public void update(UserUpdateReqDTO userUpdateReqDTO) {
+        //TODO 验证当前用户是否为登陆用户
+        LambdaQueryWrapper<UserDO> updateWrapper = Wrappers.lambdaQuery(UserDO.class)
+                .eq(UserDO::getUsername, userUpdateReqDTO.getUsername());
+        baseMapper.update(BeanUtil.toBean(userUpdateReqDTO, UserDO.class), updateWrapper);
+
     }
 }

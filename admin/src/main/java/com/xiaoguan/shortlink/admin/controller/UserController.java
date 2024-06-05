@@ -3,6 +3,7 @@ package com.xiaoguan.shortlink.admin.controller;
 import com.xiaoguan.shortlink.admin.common.convention.result.Result;
 import com.xiaoguan.shortlink.admin.common.convention.result.Results;
 import com.xiaoguan.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.xiaoguan.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.UserRespDTO;
 import com.xiaoguan.shortlink.admin.service.UserService;
 import jakarta.annotation.Resource;
@@ -41,6 +42,12 @@ public class UserController {
     @PostMapping("/api/short-link/v1/user")
     public Result<Void> register(@RequestBody UserRegisterReqDTO userRegisterReqDTO){
         userService.register(userRegisterReqDTO);
+        return Results.success();
+    }
+
+    @PutMapping("/api/short-link/v1/user")
+    public Result<Void> update(@RequestBody UserUpdateReqDTO UserUpdateReqDTO){
+        userService.update(UserUpdateReqDTO);
         return Results.success();
     }
 }
