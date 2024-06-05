@@ -38,7 +38,14 @@ POST http://localhost:8002/api/short-link/v1/user/login
 Content-Type: application/json
 
 {
-  "username": "xiaoguan",
+  "username": "xiaoguan1",
   "password": "abc123456"
 }
+
+###
+
+DELETE http://localhost:8002/api/short-link/v1/user/logout?username=xiaoguan1&token=dc24974d-56cb-4b56-8a0b-c2d57b90c07d
+Content-Type: application/json
+
+
 
