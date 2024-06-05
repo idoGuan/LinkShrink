@@ -12,7 +12,7 @@ POST http://localhost:8002/api/short-link/v1/user
 Content-Type: application/json
 
 {
-  "username": "xiaoguan",
+  "username": "xiaoguan1",
   "password": "abc123",
   "realname": "小管",
   "phone": "12312341234",
