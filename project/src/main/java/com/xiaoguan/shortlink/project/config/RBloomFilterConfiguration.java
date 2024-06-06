@@ -1,4 +1,4 @@
-package com.xiaoguan.shortlink.project.common.config;
+package com.xiaoguan.shortlink.project.config;
 
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RedissonClient;
