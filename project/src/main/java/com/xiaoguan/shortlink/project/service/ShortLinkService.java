@@ -6,7 +6,10 @@ import com.xiaoguan.shortlink.project.dao.entity.ShortLinkDO;
 import com.xiaoguan.shortlink.project.dto.req.ShortLinkCreateReqDTO;
 import com.xiaoguan.shortlink.project.dto.req.ShortLinkPageReqDTO;
 import com.xiaoguan.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
+import com.xiaoguan.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.xiaoguan.shortlink.project.dto.resp.ShortLinkPageRespDTO;
+
+import java.util.List;
 
 /**
  * ClassName: ShortLinkService
@@ -21,4 +24,6 @@ public interface ShortLinkService extends IService<ShortLinkDO> {
     ShortLinkCreateRespDTO createShortLink(ShortLinkCreateReqDTO shortLinkCreateReqDTO);
 
     IPage<ShortLinkPageRespDTO> pageShortLink(ShortLinkPageReqDTO requestParam);
+
+    List<ShortLinkGroupCountQueryRespDTO> listGroupShortLinkCount(List<String> requestParam);
 }
