@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version 1.0
  */
 @SpringBootApplication
-@MapperScan("com.xiaoguan.shortlink.admin.dao.mapper")
+@MapperScan("com.xiaoguan.shortlink.project.dao.mapper")
 public class ShortLinkApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShortLinkApplication.class, args);
