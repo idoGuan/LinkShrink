@@ -13,6 +13,8 @@ import com.xiaoguan.shortlink.admin.common.convention.errorcode.IErrorCode;
  */
 public enum UserErrorCodeEnum implements IErrorCode {
 
+    USER_TOKEN_FAIL("A000200", "用户Token验证失败"),
+
     USER_NULL("BOO0200", "用户记录不存在"),
 
     USER_NAME_EXIST("BOO0201", "用户名已存在"),
