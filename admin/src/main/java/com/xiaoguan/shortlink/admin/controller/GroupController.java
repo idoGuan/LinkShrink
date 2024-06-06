@@ -27,30 +27,30 @@ public class GroupController {
     @Resource
     private GroupService groupService;
 
-    @PostMapping("/api/short-link/v1/group")
+    @PostMapping("/api/short-link/admin/v1/group")
     public Result<Void> save(@RequestBody ShortLinkGroupSaveReqDTO shortLinkGroupSaveReqDTO){
         groupService.saveGroup(shortLinkGroupSaveReqDTO.getName());
         return Results.success();
     }
 
-    @GetMapping("/api/short-link/v1/group")
+    @GetMapping("/api/short-link/admin/v1/group")
     public Result<List<ShortLinkGroupRespDTO>> listGroup(){
         return Results.success(groupService.listGroup());
     }
 
-    @PutMapping("/api/short-link/v1/group")
+    @PutMapping("/api/short-link/admin/v1/group")
     public Result<Void> updateGroup(@RequestBody ShortLinkGroupUpdateReqDTO shortLinkGroupUpdateReqDTO){
         groupService.updateGroup(shortLinkGroupUpdateReqDTO);
         return Results.success();
     }
 
-    @DeleteMapping("/api/short-link/v1/group")
+    @DeleteMapping("/api/short-link/admin/v1/group")
     public Result<Void> deleteGroup(@RequestParam String gid){
         groupService.deleteGroup(gid);
         return Results.success();
     }
 
-    @PostMapping("/api/short-link/v1/group/sort")
+    @PostMapping("/api/short-link/admin/v1/group/sort")
     public Result<Void> sortGroup(@RequestBody List<ShortLinkGroupSortReqDTO> requestParam){
         groupService.sortGroup(requestParam);
         return Results.success();

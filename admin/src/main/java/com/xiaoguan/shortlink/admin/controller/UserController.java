@@ -26,14 +26,14 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/api/short-link/v1/user/{username}")
+    @GetMapping("/api/short-link/admin/v1/user/{username}")
     public Result<UserRespDTO> getUserByUsername(@PathVariable("username") String username){
 
         return Results.success(userService.getUserByUsername(username));
 
     }
 
-    @GetMapping("/api/short-link/v1/user/has-username")
+    @GetMapping("/api/short-link/admin/v1/user/has-username")
     public Result<Boolean> hasUsername(@RequestParam("username") String username){
         return Results.success(userService.hasUsername(username));
     }
@@ -41,7 +41,7 @@ public class UserController {
     /**
      * 注册用户
      */
-    @PostMapping("/api/short-link/v1/user")
+    @PostMapping("/api/short-link/admin/v1/user")
     public Result<Void> register(@RequestBody UserRegisterReqDTO userRegisterReqDTO){
         userService.register(userRegisterReqDTO);
         return Results.success();
@@ -50,24 +50,24 @@ public class UserController {
     /**
      * 修改用户信息
      */
-    @PutMapping("/api/short-link/v1/user")
+    @PutMapping("/api/short-link/admin/v1/user")
     public Result<Void> update(@RequestBody UserUpdateReqDTO UserUpdateReqDTO){
         userService.update(UserUpdateReqDTO);
         return Results.success();
     }
 
-    @PostMapping("/api/short-link/v1/user/login")
+    @PostMapping("/api/short-link/v1/admin/user/login")
     public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO userLoginReqDTO){
         UserLoginRespDTO userLoginRespDTO = userService.login(userLoginReqDTO);
         return Results.success(userLoginRespDTO);
     }
 
-    @GetMapping("/api/short-link/v1/user/check-login")
+    @GetMapping("/api/short-link/v1/admin/user/check-login")
     public Result<Boolean> login(@RequestParam("username") String username, @RequestParam("token") String token){
         return Results.success(userService.checkLogin(username, token));
     }
 
-    @DeleteMapping("/api/short-link/v1/user/logout")
+    @DeleteMapping("/api/short-link/admin/v1/user/logout")
     public Result<Void> logout(@RequestParam("username") String username, @RequestParam("token") String token){
         userService.logout(username, token);
         return Results.success();
