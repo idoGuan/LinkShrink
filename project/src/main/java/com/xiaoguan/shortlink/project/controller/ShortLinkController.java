@@ -5,6 +5,7 @@ import com.xiaoguan.shortlink.project.common.convention.result.Result;
 import com.xiaoguan.shortlink.project.common.convention.result.Results;
 import com.xiaoguan.shortlink.project.dto.req.ShortLinkCreateReqDTO;
 import com.xiaoguan.shortlink.project.dto.req.ShortLinkPageReqDTO;
+import com.xiaoguan.shortlink.project.dto.req.ShortLinkUpdateReqDTO;
 import com.xiaoguan.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.xiaoguan.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.xiaoguan.shortlink.project.dto.resp.ShortLinkPageRespDTO;
@@ -48,5 +49,11 @@ public class ShortLinkController {
     @GetMapping("/api/short-link/v1/count")
     public Result<List<ShortLinkGroupCountQueryRespDTO>> listGroupShortLinkCount(@RequestParam("requestParam") List<String> requestParam) {
         return Results.success(shortLinkService.listGroupShortLinkCount(requestParam));
+    }
+
+    @PutMapping("/api/short-link/v1/update")
+    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam) {
+        shortLinkService.updateShortLink(requestParam);
+        return Results.success();
     }
 }
