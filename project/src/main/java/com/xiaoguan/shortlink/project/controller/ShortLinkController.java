@@ -11,6 +11,8 @@ import com.xiaoguan.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.xiaoguan.shortlink.project.dto.resp.ShortLinkPageRespDTO;
 import com.xiaoguan.shortlink.project.service.ShortLinkService;
 import jakarta.annotation.Resource;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,5 +60,10 @@ public class ShortLinkController {
     public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam) {
         shortLinkService.updateShortLink(requestParam);
         return Results.success();
+    }
+
+    @GetMapping("/{short-uri}")
+    public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response) {
+        shortLinkService.restoreUrl(shortUri, request, response);
     }
 }
