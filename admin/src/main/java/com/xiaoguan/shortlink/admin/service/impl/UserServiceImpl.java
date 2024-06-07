@@ -13,6 +13,7 @@ import com.xiaoguan.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.xiaoguan.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.UserLoginRespDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.UserRespDTO;
+import com.xiaoguan.shortlink.admin.service.GroupService;
 import com.xiaoguan.shortlink.admin.service.UserService;
 import jakarta.annotation.Resource;
 import org.redisson.api.RBloomFilter;
@@ -50,6 +51,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
+    @Resource
+    private GroupService groupService;
+
     public UserRespDTO getUserByUsername(String username) {
         LambdaQueryWrapper<UserDO> queryWrapper = Wrappers.lambdaQuery(UserDO.class)
                 .eq(UserDO::getUsername, username);
@@ -83,6 +87,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
                     throw new ClientException(USER_EXIST);
                 }
                 userRegisterCachePenetrationBloomFilter.add(userRegisterReqDTO.getUsername());
+                groupService.saveGroup(userRegisterReqDTO.getUsername(), "默认分组");
                 return;
             }
             throw new ClientException(USER_NAME_EXIST);
