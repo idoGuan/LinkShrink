@@ -44,6 +44,12 @@ public class ShortLinkUpdateReqDTO {
     private Date validDate;
 
     /**
+     * 原始分组标识
+     */
+    private String originGid;
+
+
+    /**
      * 描述
      */
     private String describe;
