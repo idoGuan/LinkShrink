@@ -9,13 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
- * ClassName: UserConfiguration
- * Package: com.xiaoguan.shortlink.admin.config
- * Description:
- *
- * @Author 小管不要跑
- * @Create 2024/6/5 17:21
- * @Version 1.0
+ * 用户配置自动装配
  */
 @Configuration
 public class UserConfiguration {
