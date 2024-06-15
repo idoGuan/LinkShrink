@@ -14,7 +14,7 @@ import com.xiaoguan.shortlink.admin.dao.mapper.GroupMapper;
 import com.xiaoguan.shortlink.admin.dto.req.ShortLinkGroupSortReqDTO;
 import com.xiaoguan.shortlink.admin.dto.req.ShortLinkGroupUpdateReqDTO;
 import com.xiaoguan.shortlink.admin.dto.resp.ShortLinkGroupRespDTO;
-import com.xiaoguan.shortlink.admin.remote.ShortLinkRemoteService;
+import com.xiaoguan.shortlink.admin.remote.ShortLinkActualRemoteService;
 import com.xiaoguan.shortlink.admin.remote.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.xiaoguan.shortlink.admin.service.GroupService;
 import com.xiaoguan.shortlink.admin.util.RandomGenerator;
@@ -47,11 +47,8 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, GroupDO> implemen
     @Resource
     private RedissonClient redissonClient;
 
-    /**
-     * 后续重构为 SpringCloud Feign 调用
-     */
-    ShortLinkRemoteService shortLinkRemoteService = new ShortLinkRemoteService() {
-    };
+    @Resource
+    private ShortLinkActualRemoteService shortLinkActualRemoteService;
 
     @Value("${short-link.group.max-num}")
     private Integer groupMaxNum;
@@ -107,7 +104,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, GroupDO> implemen
                 .orderByDesc(GroupDO::getSortOrder, GroupDO::getUpdateTime);
         List<GroupDO> groupDOList = baseMapper.selectList(queryWrapper);
 
-        Result<List<ShortLinkGroupCountQueryRespDTO>> listResult = shortLinkRemoteService
+        Result<List<ShortLinkGroupCountQueryRespDTO>> listResult = shortLinkActualRemoteService
                 .listGroupShortLinkCount(groupDOList.stream().map(GroupDO::getGid).toList());
         List<ShortLinkGroupRespDTO> shortLinkGroupRespDTOList = BeanUtil.copyToList(groupDOList, ShortLinkGroupRespDTO.class);
         shortLinkGroupRespDTOList.forEach(each -> {
